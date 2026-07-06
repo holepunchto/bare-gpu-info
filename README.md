@@ -44,16 +44,16 @@ Get the graphics APIs for which a local driver was detected on the system, retur
 
 ```js
 drivers = {
-  vulkan: boolean, // Vulkan
-  opencl: boolean, // OpenCL
-  opengl: boolean, // OpenGL, including OpenGL ES via EGL
-  webgpu: boolean, // WebGPU, via a native Dawn or wgpu implementation
-  metal: boolean, // Apple Metal, only available on macOS
-  direct3d11: boolean, // Direct3D 11, only available on Windows
-  direct3d12: boolean, // Direct3D 12, only available on Windows
-  cuda: boolean, // NVIDIA CUDA
-  levelZero: boolean, // Intel oneAPI Level Zero
-  rocm: boolean // AMD ROCm/HIP
+  vulkan, // Vulkan
+  opencl, // OpenCL
+  opengl, // OpenGL, including OpenGL ES via EGL
+  webgpu, // WebGPU, via a native Dawn or wgpu implementation
+  metal, // Apple Metal, only available on macOS
+  direct3d11, // Direct3D 11, only available on Windows
+  direct3d12, // Direct3D 12, only available on Windows
+  cuda, // NVIDIA CUDA
+  levelZero, // Intel oneAPI Level Zero
+  rocm // AMD ROCm/HIP
 }
 ```
 
@@ -63,18 +63,18 @@ Get static information about the GPU at `index`, where `index` is in the range `
 
 ```js
 gpu = {
-  name: string | null, // Human-readable model name, `null` if unknown
-  vendor: string | null, // Human-readable vendor name, `null` if unknown
-  driverName: string | null, // Kernel driver bound to the device, e.g. 'amdgpu' (Linux only), `null` if unknown
-  driverVersion: string | null, // Driver software version, `null` if unknown
-  type: number, // The device category, as a value of `constants.gpuType`
-  drivers: object, // The graphics APIs the device can be driven by, as in `info.drivers()`
-  vendorId: number, // PCI vendor identifier, e.g. `0x10de` for NVIDIA, `0` if unknown
-  deviceId: number, // PCI device identifier, `0` if unknown
-  subsystemId: number, // PCI subsystem identifier, `0` if unknown
-  revision: number, // PCI revision, `0` if unknown
-  unifiedMemory: boolean, // Whether the device shares a unified memory space with the CPU
-  memory: number // Total video memory in bytes, `0` if unknown
+  name, // Human-readable model name, `null` if unknown
+  vendor, // Human-readable vendor name, `null` if unknown
+  driverName, // Kernel driver bound to the device, e.g. 'amdgpu' (Linux only), `null` if unknown
+  driverVersion, // Driver software version, `null` if unknown
+  type, // The device category, as a value of `constants.gpuType`
+  drivers, // The graphics APIs the device can be driven by, as in `info.drivers()`
+  vendorId, // PCI vendor identifier, e.g. `0x10de` for NVIDIA, `0` if unknown
+  deviceId, // PCI device identifier, `0` if unknown
+  subsystemId, // PCI subsystem identifier, `0` if unknown
+  revision, // PCI revision, `0` if unknown
+  unifiedMemory, // Whether the device shares a unified memory space with the CPU
+  memory // Total video memory in bytes, `0` if unknown
 }
 ```
 
@@ -88,13 +88,13 @@ Sample the runtime utilization of the GPU at `index`, where `index` is in the ra
 
 ```js
 usage = {
-  compute: number | undefined, // Fraction of compute capacity in use, in [0, 1]
-  encode: number | undefined, // Fraction of video encode capacity in use, in [0, 1]
-  decode: number | undefined, // Fraction of video decode capacity in use, in [0, 1]
-  memoryUsed: number, // Memory currently in use, in bytes
-  memoryTotal: number, // Total memory available to the device, in bytes, `0` if unknown
-  power: number | undefined, // Instantaneous power draw, in watts
-  temperature: number | undefined // Device temperature, in degrees Celsius
+  compute, // Fraction of compute capacity in use, in [0, 1]
+  encode, // Fraction of video encode capacity in use, in [0, 1]
+  decode, // Fraction of video decode capacity in use, in [0, 1]
+  memoryUsed, // Memory currently in use, in bytes
+  memoryTotal, // Total memory available to the device, in bytes, `0` if unknown
+  power, // Instantaneous power draw, in watts
+  temperature // Device temperature, in degrees Celsius
 }
 ```
 
