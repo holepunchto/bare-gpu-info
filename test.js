@@ -47,12 +47,16 @@ test('gpu', (t) => {
     }
 
     t.ok(Object.values(constants.gpuType).includes(gpu.type), 'known type')
-    t.is(typeof gpu.vendorId, 'number')
-    t.is(typeof gpu.deviceId, 'number')
-    t.is(typeof gpu.subsystemId, 'number')
+
+    for (const key of ['vendorId', 'deviceId', 'subsystemId', 'memory']) {
+      t.ok(
+        gpu[key] === undefined || typeof gpu[key] === 'number',
+        `${key} is a number or undefined`
+      )
+    }
+
     t.is(typeof gpu.revision, 'number')
     t.is(typeof gpu.unifiedMemory, 'boolean')
-    t.is(typeof gpu.memory, 'number')
 
     for (const key of driverKeys) {
       t.is(typeof gpu.drivers[key], 'boolean', key)
@@ -82,7 +86,10 @@ test('sample', (t) => {
     }
 
     t.is(typeof usage.memoryUsed, 'number')
-    t.is(typeof usage.memoryTotal, 'number')
+    t.ok(
+      usage.memoryTotal === undefined || typeof usage.memoryTotal === 'number',
+      'memoryTotal is a number or undefined'
+    )
   }
 })
 

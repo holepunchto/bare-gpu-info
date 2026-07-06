@@ -69,12 +69,12 @@ gpu = {
   driverVersion, // Driver software version, `null` if unknown
   type, // The device category, as a value of `constants.gpuType`
   drivers, // The graphics APIs the device can be driven by, as in `info.drivers()`
-  vendorId, // PCI vendor identifier, e.g. `0x10de` for NVIDIA, `0` if unknown
-  deviceId, // PCI device identifier, `0` if unknown
-  subsystemId, // PCI subsystem identifier, `0` if unknown
-  revision, // PCI revision, `0` if unknown
+  vendorId, // PCI vendor identifier, e.g. `0x10de` for NVIDIA, `undefined` if unknown
+  deviceId, // PCI device identifier, `undefined` if unknown
+  subsystemId, // PCI subsystem identifier, `undefined` if unknown
+  revision, // PCI revision
   unifiedMemory, // Whether the device shares a unified memory space with the CPU
-  memory // Total video memory in bytes, `0` if unknown
+  memory // Total video memory in bytes, `undefined` if unknown
 }
 ```
 
@@ -92,7 +92,7 @@ usage = {
   encode, // Fraction of video encode capacity in use, in [0, 1]
   decode, // Fraction of video decode capacity in use, in [0, 1]
   memoryUsed, // Memory currently in use, in bytes
-  memoryTotal, // Total memory available to the device, in bytes, `0` if unknown
+  memoryTotal, // Total memory available to the device, in bytes, `undefined` if unknown
   power, // Instantaneous power draw, in watts
   temperature // Device temperature, in degrees Celsius
 }

@@ -22,12 +22,12 @@ export interface GPU {
   driverVersion: string | null
   type: GPUType
   drivers: Drivers
-  vendorId: number
-  deviceId: number
-  subsystemId: number
+  vendorId: number | undefined
+  deviceId: number | undefined
+  subsystemId: number | undefined
   revision: number
   unifiedMemory: boolean
-  memory: number
+  memory: number | undefined
 }
 
 export interface Usage {
@@ -35,7 +35,7 @@ export interface Usage {
   encode: number | undefined
   decode: number | undefined
   memoryUsed: number
-  memoryTotal: number
+  memoryTotal: number | undefined
   power: number | undefined
   temperature: number | undefined
 }

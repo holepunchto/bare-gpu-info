@@ -79,22 +79,30 @@ exports.GPUInfo = exports
 
 exports.constants = constants
 
-// The library reports an unknown string as empty; surface those as `null` so
-// consumers can distinguish "unknown" from a genuine empty value.
+// The library reports unknown strings as empty and unknown numbers as `0`.
+// Surface these as `null` and `undefined` respectively so consumers can
+// distinguish "unknown" from a genuine empty or zero value.
 function normalizeGpu(gpu) {
   for (const key of ['name', 'vendor', 'driverName', 'driverVersion']) {
     if (gpu[key] === '') gpu[key] = null
   }
 
+  for (const key of ['vendorId', 'deviceId', 'subsystemId', 'memory']) {
+    if (gpu[key] === 0) gpu[key] = undefined
+  }
+
   return gpu
 }
 
-// The library reports an unavailable metric as a negative value; surface those
-// as `undefined` so consumers can distinguish "unsupported" from a genuine `0`.
+// The library reports an unavailable metric as a negative value, or `0` for the
+// total memory; surface these as `undefined` so consumers can distinguish
+// "unavailable" from a genuine `0`.
 function normalizeUsage(usage) {
   for (const key of ['compute', 'encode', 'decode', 'power', 'temperature']) {
     if (usage[key] < 0) usage[key] = undefined
   }
+
+  if (usage.memoryTotal === 0) usage.memoryTotal = undefined
 
   return usage
 }
