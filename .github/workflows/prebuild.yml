@@ -35,16 +35,17 @@ jobs:
           - os: macos-14
             platform: ios
             arch: arm64
+            flags: -D APPLE_CLANG=ON
           - os: macos-14
             platform: ios
             arch: arm64
             tags: -simulator
-            flags: --simulator
+            flags: --simulator -D APPLE_CLANG=ON
           - os: macos-14
             platform: ios
             arch: x64
             tags: -simulator
-            flags: --simulator
+            flags: --simulator -D APPLE_CLANG=ON
           - os: windows-2022
             platform: win32
             arch: x64
