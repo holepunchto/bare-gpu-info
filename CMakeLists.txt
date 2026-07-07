@@ -5,7 +5,7 @@ find_package(cmake-fetch REQUIRED PATHS node_modules/cmake-fetch)
 
 project(bare_gpu_info C)
 
-fetch_package("github:holepunchto/libgpuinfo#d037306")
+fetch_package("github:holepunchto/libgpuinfo#a2d3723")
 
 add_bare_module(bare_gpu_info)
 
