@@ -79,30 +79,38 @@ exports.GPUInfo = exports
 
 exports.constants = constants
 
-// The library reports unknown strings as empty and unknown numbers as `0`.
-// Surface these as `null` and `undefined` respectively so consumers can
-// distinguish "unknown" from a genuine empty or zero value.
+// The library reports unknown strings as empty, unknown PCI identifiers as `0`,
+// and unknown memory sizes as `-1`. Surface these as `null` and `undefined`
+// respectively so consumers can distinguish "unknown" from a genuine empty or
+// zero value.
 function normalizeGpu(gpu) {
   for (const key of ['name', 'vendor', 'driverName', 'driverVersion']) {
     if (gpu[key] === '') gpu[key] = null
   }
 
-  for (const key of ['vendorId', 'deviceId', 'subsystemId', 'memory']) {
+  for (const key of ['vendorId', 'deviceId', 'subsystemId']) {
     if (gpu[key] === 0) gpu[key] = undefined
   }
+
+  if (gpu.memory < 0) gpu.memory = undefined
 
   return gpu
 }
 
-// The library reports an unavailable metric as a negative value, or `0` for the
-// total memory; surface these as `undefined` so consumers can distinguish
-// "unavailable" from a genuine `0`.
+// The library reports an unavailable metric as a negative value; surface these
+// as `undefined` so consumers can distinguish "unavailable" from a genuine `0`.
 function normalizeUsage(usage) {
-  for (const key of ['compute', 'encode', 'decode', 'power', 'temperature']) {
+  for (const key of [
+    'compute',
+    'encode',
+    'decode',
+    'power',
+    'temperature',
+    'memoryUsed',
+    'memoryTotal'
+  ]) {
     if (usage[key] < 0) usage[key] = undefined
   }
-
-  if (usage.memoryTotal === 0) usage.memoryTotal = undefined
 
   return usage
 }
