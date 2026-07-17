@@ -81,15 +81,17 @@ test('sample', (t) => {
 
     t.comment(usage)
 
-    for (const key of ['compute', 'encode', 'decode', 'power', 'temperature']) {
+    for (const key of [
+      'compute',
+      'encode',
+      'decode',
+      'power',
+      'temperature',
+      'memoryUsed',
+      'memoryTotal'
+    ]) {
       t.ok(usage[key] === undefined || typeof usage[key] === 'number', key)
     }
-
-    t.is(typeof usage.memoryUsed, 'number')
-    t.ok(
-      usage.memoryTotal === undefined || typeof usage.memoryTotal === 'number',
-      'memoryTotal is a number or undefined'
-    )
   }
 })
 

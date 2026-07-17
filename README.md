@@ -91,7 +91,7 @@ usage = {
   compute, // Fraction of compute capacity in use, in [0, 1]
   encode, // Fraction of video encode capacity in use, in [0, 1]
   decode, // Fraction of video decode capacity in use, in [0, 1]
-  memoryUsed, // Memory currently in use, in bytes
+  memoryUsed, // Memory currently in use, in bytes, `undefined` if unknown
   memoryTotal, // Total memory available to the device, in bytes, `undefined` if unknown
   power, // Instantaneous power draw, in watts
   temperature // Device temperature, in degrees Celsius

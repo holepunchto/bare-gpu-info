@@ -34,7 +34,7 @@ export interface Usage {
   compute: number | undefined
   encode: number | undefined
   decode: number | undefined
-  memoryUsed: number
+  memoryUsed: number | undefined
   memoryTotal: number | undefined
   power: number | undefined
   temperature: number | undefined
