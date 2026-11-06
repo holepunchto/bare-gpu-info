@@ -211,6 +211,7 @@ bare_gpu_info_query(js_env_t *env, js_callback_info_t *info) {
   V("revision", js_create_uint32, gpu.revision)
   V("unifiedMemory", js_get_boolean, gpu.unified_memory)
   V("memory", js_create_int64, (int64_t) gpu.memory)
+  V("dedicatedMemory", js_create_int64, (int64_t) gpu.dedicated_memory)
 #undef V
 
   js_value_t *drivers = bare_gpu_info__drivers(env, &gpu.drivers);
@@ -270,6 +271,7 @@ bare_gpu_info_sample(js_env_t *env, js_callback_info_t *info) {
   V("temperature", js_create_double, usage.temperature)
   V("memoryUsed", js_create_int64, (int64_t) usage.memory_used)
   V("memoryTotal", js_create_int64, (int64_t) usage.memory_total)
+  V("dedicatedMemoryUsed", js_create_int64, (int64_t) usage.dedicated_memory_used)
 #undef V
 
   return result;

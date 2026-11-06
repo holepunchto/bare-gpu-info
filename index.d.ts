@@ -28,6 +28,7 @@ export interface GPU {
   revision: number
   unifiedMemory: boolean
   memory: number | undefined
+  dedicatedMemory: number | undefined
 }
 
 export interface Usage {
@@ -36,6 +37,7 @@ export interface Usage {
   decode: number | undefined
   memoryUsed: number | undefined
   memoryTotal: number | undefined
+  dedicatedMemoryUsed: number | undefined
   power: number | undefined
   temperature: number | undefined
 }

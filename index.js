@@ -92,7 +92,9 @@ function normalizeGpu(gpu) {
     if (gpu[key] === 0) gpu[key] = undefined
   }
 
-  if (gpu.memory < 0) gpu.memory = undefined
+  for (const key of ['memory', 'dedicatedMemory']) {
+    if (gpu[key] < 0) gpu[key] = undefined
+  }
 
   return gpu
 }
@@ -107,7 +109,8 @@ function normalizeUsage(usage) {
     'power',
     'temperature',
     'memoryUsed',
-    'memoryTotal'
+    'memoryTotal',
+    'dedicatedMemoryUsed'
   ]) {
     if (usage[key] < 0) usage[key] = undefined
   }

@@ -48,11 +48,15 @@ test('gpu', (t) => {
 
     t.ok(Object.values(constants.gpuType).includes(gpu.type), 'known type')
 
-    for (const key of ['vendorId', 'deviceId', 'subsystemId', 'memory']) {
+    for (const key of ['vendorId', 'deviceId', 'subsystemId', 'memory', 'dedicatedMemory']) {
       t.ok(
         gpu[key] === undefined || typeof gpu[key] === 'number',
         `${key} is a number or undefined`
       )
+    }
+
+    if (gpu.memory !== undefined && gpu.dedicatedMemory !== undefined) {
+      t.ok(gpu.dedicatedMemory <= gpu.memory, 'dedicated memory is a part of memory')
     }
 
     t.is(typeof gpu.revision, 'number')
@@ -88,9 +92,17 @@ test('sample', (t) => {
       'power',
       'temperature',
       'memoryUsed',
-      'memoryTotal'
+      'memoryTotal',
+      'dedicatedMemoryUsed'
     ]) {
       t.ok(usage[key] === undefined || typeof usage[key] === 'number', key)
+    }
+
+    if (usage.memoryUsed !== undefined && usage.dedicatedMemoryUsed !== undefined) {
+      t.ok(
+        usage.dedicatedMemoryUsed <= usage.memoryUsed,
+        'dedicated memory used is a part of memory used'
+      )
     }
   }
 })
