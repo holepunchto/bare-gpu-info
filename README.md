@@ -74,9 +74,12 @@ gpu = {
   subsystemId, // PCI subsystem identifier, `undefined` if unknown
   revision, // PCI revision
   unifiedMemory, // Whether the device shares a unified memory space with the CPU
-  memory // Total video memory in bytes, `undefined` if unknown
+  memory, // Total video memory in bytes, `undefined` if unknown
+  dedicatedMemory // Dedicated video memory in bytes, as a part of `memory`, `undefined` if unknown
 }
 ```
+
+For a discrete GPU, `dedicatedMemory` equals `memory`. For an integrated GPU, `memory` is all the system memory the GPU can use, including the carve-out that is reserved for it, and `dedicatedMemory` is just that carve-out. The carve-out is `0` when the GPU has none, as on Apple silicon. The memory an integrated GPU can use is shared with the rest of the system, so do not add it to the system memory.
 
 #### `const gpus = info.gpus()`
 
@@ -93,6 +96,7 @@ usage = {
   decode, // Fraction of video decode capacity in use, in [0, 1]
   memoryUsed, // Memory currently in use, in bytes, `undefined` if unknown
   memoryTotal, // Total memory available to the device, in bytes, `undefined` if unknown
+  dedicatedMemoryUsed, // Dedicated memory currently in use, in bytes, as a part of `memoryUsed`, `undefined` if unknown
   power, // Instantaneous power draw, in watts
   temperature // Device temperature, in degrees Celsius
 }
